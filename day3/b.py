@@ -1,27 +1,5 @@
-class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    def key(self):
-        return str(self.x) + ',' + str(self.y)
-
-
-class Instruction:
-    def __init__(self, str):
-        self.operation = str[0]
-        self.count = int(str[1:])
-
-    def mutatePos(self, pos):
-        if(self.operation == "U"):
-            pos.y += 1
-        elif(self.operation == "D"):
-            pos.y -= 1
-        elif(self.operation == "R"):
-            pos.x += 1
-        elif(self.operation == "L"):
-            pos.x -= 1
-        return pos
+from instruction import Instruction
+from point import Point
 
 
 def main():
