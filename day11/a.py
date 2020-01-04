@@ -1,25 +1,7 @@
 from robot import Robot
 from intcodeprogram import IntCodeProgram
 from point import Point
-
-BLACK = 0
-WHITE = 1
-
-
-class Hull:
-    @staticmethod
-    def createKey(point: Point):
-        return '{},{}'.format(point.x, point.y)
-
-    def __init__(self):
-        self.grid = {}
-
-    def paint(self, panel: Point, color: str):
-        self.grid[Hull.createKey(panel)] = color
-
-    def getColor(self, panel: Point) -> int:
-        key = Hull.createKey(panel)
-        return BLACK if key not in self.grid else self.grid[key]
+from hull import Hull
 
 
 def main(file):
