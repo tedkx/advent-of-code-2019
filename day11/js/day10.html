@@ -1,0 +1,25 @@
+!<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+
+        <script src="input.js"></script>
+        <script src="intcode.js"></script>
+        <script src="day10.js"></script>
+        <script>
+            const hull = window.createHull();
+            const robot = window.createRobot();
+            const program = window.createProgram(window.input);
+
+            while(true) {
+                const currentColor = hull.getColor(robot.position);
+                const [color, direction] = program.process(currentColor);
+                if(typeof color !== 'number' || typeof direction !== 'number')
+                    break
+                hull.paint(robot.position, color);
+                robot.move(direction);
+            }
+            console.log('painted', Object.keys(hull.grid))
+        </script>
+    </body>
+</html>

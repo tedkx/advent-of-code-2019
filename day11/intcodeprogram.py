@@ -67,6 +67,7 @@ class IntCodeProgram:
 
                 params = getParams(self.lst, self.idx, self.relativeBase,
                                    paramModes, paramCount)
+
                 if(op == 1):
                     self.lst[params[2]] = self.lst[params[0]] + \
                         self.lst[params[1]]
@@ -78,8 +79,6 @@ class IntCodeProgram:
                 elif(op == 4):
                     output = self.lst[params[0]]
                     outputs.append(output)
-                    if(len(outputs) >= 2):
-                        return 'OUTPUT', outputs[0], outputs[1]
                 elif(op == 5):
                     if(self.lst[params[0]] != 0):
                         self.idx = self.lst[params[1]]
@@ -100,6 +99,8 @@ class IntCodeProgram:
                     return 'INVALID INSTRUCTION: ' + instruction, -1, -1
 
                 self.idx += paramCount + 1
+                if(len(outputs) >= 2):
+                    return 'OUTPUT', outputs[0], outputs[1]
         except Exception as e:
             print('exception', e, 'raw', raw, 'idx', self.idx)
             return 'EXCEPTION', -1, -1

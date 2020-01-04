@@ -28,21 +28,10 @@ def main(file):
     program = IntCodeProgram(file.read().strip().split(','))
 
     while(True):
-        fromPosition = robot.position
-
         currentColor = hull.getColor(robot.position)
         status, color, direction = program.process(currentColor)
         hull.paint(robot.position, color)
         robot.move(direction)
-
-        print(color, direction, 'left ' if direction == 0 else 'right',
-              'supplied', 'black' if currentColor == BLACK else 'white',
-              'painted', 'black' if color == BLACK else 'white',
-              'and moved',
-              '[{},{}] -> [{},{}]'.format(fromPosition.x, fromPosition.y,
-                                          robot.position.x, robot.position.y))
-        #   '\n',
-        #   ','.join([key + ' ' + str(hull.grid[key]) for key in sorted(hull.grid)]))
 
         if(status != 'OUTPUT'):
             break
